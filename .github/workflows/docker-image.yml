@@ -1,0 +1,24 @@
+name: Docker Image CI
+
+on:
+  workflow_dispatch:
+    inputs:
+      image-name:
+        description: 'ImageName'     
+        required: true
+        default: 'react-practice'
+
+jobs:
+
+  build:
+
+    runs-on: self-hosted
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag ${{ github.event.inputs.image-name }}
+    
+    - name: Run Docker image
+      run: docker run -p 80:3000 ${{ github.event.inputs.image-name }} &
