@@ -1,7 +1,7 @@
 import './ExpenseForm.css';
 import { useState } from 'react';
 
-const ExpenseForm = ({onSaveExpenseData}) => {
+const ExpenseForm = ({onSaveExpenseData, onCancel}) => {
 
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredAmount, setEnteredAmount] = useState('');
@@ -67,7 +67,7 @@ const ExpenseForm = ({onSaveExpenseData}) => {
                 </div>
             </div>
             <div className="new-expense__actions">
-                <button type="submit">Add Expense</button>
+                <button onClick={onCancel} type="cancel">Cancel</button> <button type="submit">Add Expense</button>
             </div>
         </form>
     )
