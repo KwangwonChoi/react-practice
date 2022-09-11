@@ -17,6 +17,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
+    - name: remove previous container
+      run: docker stop $(docker ps | grep ${{ github.event.inputs.image-name }}  | awk '{print $1}')
+    
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag ${{ github.event.inputs.image-name }}
     
