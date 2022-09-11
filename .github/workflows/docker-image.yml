@@ -21,7 +21,7 @@ jobs:
       run: docker stop $(docker ps | grep ${{ github.event.inputs.image-name }}  | awk '{print $1}')
     
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ${{ github.event.inputs.image-name }}
+      run: docker build . --file ./${{ github.event.inputs.image-name }}/Dockerfile --tag ${{ github.event.inputs.image-name }}
     
     - name: Run Docker image
       run: docker run -p 80:3000 ${{ github.event.inputs.image-name }} &
